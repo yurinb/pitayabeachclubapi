@@ -12,6 +12,7 @@ app.use(function(req, res, next) {
     next();
 });
 
+require('../config/db');
 
 module.exports = {
     app:app,

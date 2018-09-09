@@ -1,14 +1,27 @@
 const server = require('../config/server');
 var fs = require('fs');
 
-const db = require('../config/db');
+const mongo = require('../config/db');
 
-server.app.post('/upload', (req, res) => {
-    db.push(Buffer.from(req.files.img.data).toString('base64'));
-    console.log(db);
-        
+server.app.post('/slider', (req, res) => {
+    let base64img = Buffer.from(req.files.img.data).toString('base64');
+    mongo.db.collection(mongo.SLIDER_COLLECTION).insertOne(base64img, function (err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to create new contact.");
+        } else {
+            res.status(201).json(doc.ops[0]);
+        }
+    });
+    console.log('DONE UPLOAD');
+
 });
 
-server.app.get('/img', (req, res) => {
-    res.send(db[0]);
+server.app.get('/slider', (req, res) => {
+    mongo.db.collection(mongo.SLIDER_COLLECTION).find({}).toArray(function (err, docs) {
+        if (err) {
+            handleError(res, err.message, "Failed to get contacts.");
+        } else {
+            res.status(200).json(docs);
+        }
+    });
 });
