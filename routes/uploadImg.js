@@ -3,6 +3,8 @@ var fs = require('fs');
 
 const mongo = require('../config/db');
 
+mongo.db = mongo.connectClient();
+
 server.app.post('/slider', (req, res) => {
     console.log('aaaaaaaaaaaaa');
     console.log(mongo);
