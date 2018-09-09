@@ -3,7 +3,7 @@ const ObjectID = mongodb.ObjectID;
 
 const SLIDER_COLLECTION = "slider";
 
-function connectDB() {
+function connectDB(callback) {
     mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
         if (err) {
             console.log(err);
@@ -11,7 +11,7 @@ function connectDB() {
         }
         // Save database object from the callback for reuse.
         console.log("Database connection ready");
-        return client.db();
+        callback(client.db());
     });
 }
 
