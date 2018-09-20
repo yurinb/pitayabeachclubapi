@@ -1,9 +1,8 @@
 function dateNow() {
-    return '_-> '+Date.now + '__--->';
+    return '_-> ' + Date.now() + '__--->';
 }
 
 
-module.exports = 
-{
+module.exports = {
     dateNow,
 };
