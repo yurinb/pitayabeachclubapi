@@ -1,15 +1,16 @@
-const mongodb  = require("mongodb");
+const mongodb = require("mongodb");
 const ObjectID = mongodb.ObjectID;
+const logs = require("../logs");
 
 // collections
-const SLIDER_COLLECTION       = "slider";
+const SLIDER_COLLECTION = "slider";
 const GDESCRIPTION_COLLECTION = "gdescription";
-const SMENU_COLLECTION        = "smenu";
-const LEVENT_COLLECTION       = "levent";
-const MBACKGROUND_COLLECTION  = "mbackground";
-const ROOM_COLLECTION         = "room";
-const GALERY_COLLECTIN        = "galery";
-const DESCRIPTION_COLLECTIN        = "description";
+const SMENU_COLLECTION = "smenu";
+const LEVENT_COLLECTION = "levent";
+const MBACKGROUND_COLLECTION = "mbackground";
+const ROOM_COLLECTION = "room";
+const GALERY_COLLECTIN = "galery";
+const DESCRIPTION_COLLECTIN = "description";
 
 let connection = null;
 let connecting = false;
@@ -39,7 +40,7 @@ function connectDB(callback) {
 
 function getConnection() {
     if (connection) {
-        console.log('dbconnection returned.');
+        console.log(logs.dateNow + 'get dbconnection.');
         return connection;
     } else {
         if (connecting == false) {
@@ -47,7 +48,7 @@ function getConnection() {
             connectDB((connection) => {
                 return connection;
             });
-            setTimeout(getConnection, 1000);
+            setTimeout(getConnection, 250);
         }
     }
 }
