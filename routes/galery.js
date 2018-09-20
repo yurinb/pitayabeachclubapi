@@ -1,9 +1,9 @@
 const server = require('../config/server');
 const mongo = require('../config/db');
 
-server.app.post('/slider', (req, res) => {
+server.app.post('/galery', (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');
-    mongo.getConnection().collection(mongo.SLIDER_COLLECTION).insertOne({
+    mongo.getConnection().collection(mongo.GALERY_COLLECTIN).insertOne({
         base64img
     }, function (err, doc) {
         if (err) {
@@ -16,8 +16,8 @@ server.app.post('/slider', (req, res) => {
     });
 });
 
-server.app.get('/slider', (req, res) => {
-    mongo.getConnection().collection(mongo.SLIDER_COLLECTION).find({}).toArray(function (err, docs) {
+server.app.get('/galery', (req, res) => {
+    mongo.getConnection().collection(mongo.GALERY_COLLECTIN).find({}).toArray(function (err, docs) {
         if (err) {
             console.log('ERROR: ' + err);
             res.status(500).json(err);
@@ -27,8 +27,8 @@ server.app.get('/slider', (req, res) => {
     });
 });
 
-server.app.get('/slider:id', (req, res) => {
-    mongo.getConnection().collection(mongo.SLIDER_COLLECTION).find({
+server.app.get('/galery:id', (req, res) => {
+    mongo.getConnection().collection(mongo.GALERY_COLLECTIN).find({
         _id: req.params.id
     }).toArray(function (err, docs) {
         if (err) {
@@ -40,9 +40,9 @@ server.app.get('/slider:id', (req, res) => {
     });
 });
 
-server.app.put('/slider:id', (req, res) => {
+server.app.put('/galery:id', (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');
-    mongo.getConnection().collection(mongo.GDESCRIPTION_COLLECTION).updateOne({
+    mongo.getConnection().collection(mongo.GALERY_COLLECTIN).updateOne({
             _id: req.params.id
         }, {
             base64img
@@ -57,11 +57,11 @@ server.app.put('/slider:id', (req, res) => {
         });
 });
 
-server.app.delete('/slider:id', (req, res) => {
+server.app.delete('/galery:id', (req, res) => {
     let document = {
         _id: req.params.id
     };
-    mongo.getConnection().collection(mongo.SLIDER_COLLECTION).remove(document, function (err, obj) {
+    mongo.getConnection().collection(mongo.GALERY_COLLECTIN).remove(document, function (err, obj) {
         if (err) {
             res.status(500).json(err);
         } else {

@@ -1,10 +1,16 @@
 const server = require('../config/server');
 const mongo = require('../config/db');
 
-server.app.post('/slider', (req, res) => {
+server.app.post('/levent', (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');
-    mongo.getConnection().collection(mongo.SLIDER_COLLECTION).insertOne({
-        base64img
+    let title = req.body.title;
+    let date = req.body.date;
+    let time = req.body.time;
+    mongo.getConnection().collection(mongo.LEVENT_COLLECTION).insertOne({
+        title,
+        img: base64img,
+        date,
+        time
     }, function (err, doc) {
         if (err) {
             console.log('ERROR: ' + err);
@@ -16,8 +22,8 @@ server.app.post('/slider', (req, res) => {
     });
 });
 
-server.app.get('/slider', (req, res) => {
-    mongo.getConnection().collection(mongo.SLIDER_COLLECTION).find({}).toArray(function (err, docs) {
+server.app.get('/levent', (req, res) => {
+    mongo.getConnection().collection(mongo.LEVENT_COLLECTION).find({}).toArray(function (err, docs) {
         if (err) {
             console.log('ERROR: ' + err);
             res.status(500).json(err);
@@ -27,8 +33,8 @@ server.app.get('/slider', (req, res) => {
     });
 });
 
-server.app.get('/slider:id', (req, res) => {
-    mongo.getConnection().collection(mongo.SLIDER_COLLECTION).find({
+server.app.get('/levent:id', (req, res) => {
+    mongo.getConnection().collection(mongo.LEVENT_COLLECTION).find({
         _id: req.params.id
     }).toArray(function (err, docs) {
         if (err) {
@@ -40,12 +46,18 @@ server.app.get('/slider:id', (req, res) => {
     });
 });
 
-server.app.put('/slider:id', (req, res) => {
+server.app.put('/levent:id', (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');
-    mongo.getConnection().collection(mongo.GDESCRIPTION_COLLECTION).updateOne({
+    let title = req.body.title;
+    let date = req.body.date;
+    let time = req.body.time;
+    mongo.getConnection().collection(mongo.LEVENT_COLLECTION).updateOne({
             _id: req.params.id
         }, {
-            base64img
+            title,
+            img: base64img,
+            date,
+            time
         },
         function (err, res) {
             if (err) {
@@ -57,11 +69,11 @@ server.app.put('/slider:id', (req, res) => {
         });
 });
 
-server.app.delete('/slider:id', (req, res) => {
+server.app.delete('/levent:id', (req, res) => {
     let document = {
         _id: req.params.id
     };
-    mongo.getConnection().collection(mongo.SLIDER_COLLECTION).remove(document, function (err, obj) {
+    mongo.getConnection().collection(mongo.LEVENT_COLLECTION).remove(document, function (err, obj) {
         if (err) {
             res.status(500).json(err);
         } else {

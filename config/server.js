@@ -1,5 +1,5 @@
-const app = require('express')();
-var bodyParser = require("body-parser");
+const app        = require('express')();
+var   bodyParser = require("body-parser");
 const fileUpload = require('express-fileupload');
 
 app.use(bodyParser.json());
@@ -15,7 +15,14 @@ app.use(function(req, res, next) {
 require('../config/db');
 
 module.exports = {
-    app:app,
+    app: app,
 };
 
+// routes
 require('../routes/uploadImg');
+require('../routes/lastEvent');
+require('../routes/squareMenu');
+require('../routes/generalDescription');
+require('../routes/mainBackgroundImg');
+require('../routes/room');
+require('../routes/galery');
