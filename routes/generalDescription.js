@@ -3,7 +3,7 @@ const mongo = require('../config/db');
 
 server.app.post('/gdescription', (req, res) => {
     mongo.getConnection().collection(mongo.GDESCRIPTION_COLLECTION).insertOne({
-        text: req.body.generalDescription
+        text: req.body.text
     }, function (err, doc) {
         if (err) {
             console.log('ERROR: ' + err);
@@ -43,7 +43,7 @@ server.app.put('/gdescription:id', (req, res) => {
     mongo.getConnection().collection(mongo.GDESCRIPTION_COLLECTION).updateOne({
             _id: req.params.id
         }, {
-            text:req.body.generalDescription
+            text:req.body.text
         },
         function (err, res) {
             if (err) {

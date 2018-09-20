@@ -1,14 +1,9 @@
 const server = require('../config/server');
 const mongo = require('../config/db');
 
-server.app.post('/room', (req, res) => {
-    mongo.getConnection().collection(mongo.ROOM_COLLECTION).insertOne({
-        cama: req.body.cama,
-        wifi: req.body.wifi,
-        air: req.body.air,
-        coffe: req.body.coffe,
-        maxOcupation: req.body.maxOcupation,
-        perNight: req.body.perNight,
+server.app.post('/description', (req, res) => {
+    mongo.getConnection().collection(mongo.DESCRIPTION_COLLECTION).insertOne({
+        text: req.body.text
     }, function (err, doc) {
         if (err) {
             console.log('ERROR: ' + err);
@@ -20,8 +15,8 @@ server.app.post('/room', (req, res) => {
     });
 });
 
-server.app.get('/room', (req, res) => {
-    mongo.getConnection().collection(mongo.ROOM_COLLECTION).find({}).toArray(function (err, docs) {
+server.app.get('/description', (req, res) => {
+    mongo.getConnection().collection(mongo.DESCRIPTION_COLLECTION).find({}).toArray(function (err, docs) {
         if (err) {
             console.log('ERROR: ' + err);
             res.status(500).json(err);
@@ -31,8 +26,8 @@ server.app.get('/room', (req, res) => {
     });
 });
 
-server.app.get('/room:id', (req, res) => {
-    mongo.getConnection().collection(mongo.ROOM_COLLECTION).find({
+server.app.get('/description:id', (req, res) => {
+    mongo.getConnection().collection(mongo.DESCRIPTION_COLLECTION).find({
         _id: req.params.id
     }).toArray(function (err, docs) {
         if (err) {
@@ -44,16 +39,11 @@ server.app.get('/room:id', (req, res) => {
     });
 });
 
-server.app.put('/room:id', (req, res) => {
-    mongo.getConnection().collection(mongo.ROOM_COLLECTION).updateOne({
+server.app.put('/description:id', (req, res) => {
+    mongo.getConnection().collection(mongo.DESCRIPTION_COLLECTION).updateOne({
             _id: req.params.id
         }, {
-            cama: req.body.cama,
-            wifi: req.body.wifi,
-            air: req.body.air,
-            coffee: req.body.coffee,
-            maxOcupation: req.body.maxOcupation,
-            perNight: req.body.perNight,
+            text:req.body.text
         },
         function (err, res) {
             if (err) {
@@ -65,11 +55,11 @@ server.app.put('/room:id', (req, res) => {
         });
 });
 
-server.app.delete('/room:id', (req, res) => {
+server.app.delete('/description:id', (req, res) => {
     let document = {
         _id: req.params.id
     };
-    mongo.getConnection().collection(mongo.ROOM_COLLECTION).remove(document, function (err, obj) {
+    mongo.getConnection().collection(mongo.DESCRIPTION_COLLECTION).remove(document, function (err, obj) {
         if (err) {
             res.status(500).json(err);
         } else {

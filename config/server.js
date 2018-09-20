@@ -26,3 +26,4 @@ require('../routes/generalDescription');
 require('../routes/mainBackgroundImg');
 require('../routes/room');
 require('../routes/galery');
+require('../routes/desc');

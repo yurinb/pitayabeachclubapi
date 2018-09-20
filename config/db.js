@@ -9,6 +9,7 @@ const LEVENT_COLLECTION       = "levent";
 const MBACKGROUND_COLLECTION  = "mbackground";
 const ROOM_COLLECTION         = "room";
 const GALERY_COLLECTIN        = "galery";
+const DESCRIPTION_COLLECTIN        = "description";
 
 let connection = null;
 let connecting = false;
@@ -62,5 +63,6 @@ module.exports = {
     LEVENT_COLLECTION,
     MBACKGROUND_COLLECTION,
     ROOM_COLLECTION,
-    GALERY_COLLECTIN
+    GALERY_COLLECTIN,
+    DESCRIPTION_COLLECTIN
 };
