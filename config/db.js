@@ -41,6 +41,9 @@ function connectDB(callback) {
 function getConnection() {
     if (connection) {
         console.log(logs.dateNow() + 'get dbconnection.');
+        logs.redLog('baaaaa kkkk');
+        logs.blueLog('whair aisai en aief kkkk');
+        logs.greenLog('ASRASRwhair aiASRAsai en aASaSrief kkkk');
         return connection;
     } else {
         if (connecting == false) {
