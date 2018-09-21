@@ -9,8 +9,8 @@ const SMENU_COLLECTION = "smenu";
 const LEVENT_COLLECTION = "levent";
 const MBACKGROUND_COLLECTION = "mbackground";
 const ROOM_COLLECTION = "room";
-const GALERY_COLLECTIN = "galery";
-const DESCRIPTION_COLLECTIN = "description";
+const GALERY_COLLECTION = "galery";
+const DESCRIPTION_COLLECTION = "description";
 
 let connection = null;
 let connecting = false;
@@ -40,10 +40,7 @@ function connectDB(callback) {
 
 function getConnection() {
     if (connection) {
-        console.log(logs.dateNow() + 'get dbconnection.');
-        logs.redLog('baaaaa kkkk');
-        logs.blueLog('whair aisai en aief kkkk');
-        logs.greenLog('ASRASRwhair aiASRAsai en aASaSrief kkkk');
+        console.log(logs.redLog(logs.dateNow()) + logs.blueLog('get dbconnection.'));
         return connection;
     } else {
         if (connecting == false) {
@@ -67,6 +64,6 @@ module.exports = {
     LEVENT_COLLECTION,
     MBACKGROUND_COLLECTION,
     ROOM_COLLECTION,
-    GALERY_COLLECTIN,
-    DESCRIPTION_COLLECTIN
+    GALERY_COLLECTION,
+    DESCRIPTION_COLLECTION
 };
