@@ -32,8 +32,7 @@ require('../routes/desc');
 require('../routes/converter');
 
 // no sleep
+var http = require("http");
 setInterval(function () {
-    app.get('', (req, res) => {
-        res.status(200);
-    });
+    http.get("http://pitayabeachapi.herokuapp.com");
 }, 50000);
