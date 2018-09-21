@@ -6,7 +6,7 @@ server.app.post('/room', (req, res) => {
         cama: req.body.cama,
         wifi: req.body.wifi,
         air: req.body.air,
-        coffe: req.body.coffe,
+        coffee: req.body.coffee,
         maxOcupation: req.body.maxOcupation,
         perNight: req.body.perNight,
     }, function (err, doc) {
