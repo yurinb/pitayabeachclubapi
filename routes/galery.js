@@ -3,7 +3,7 @@ const mongo = require('../config/db');
 
 server.app.post('/galery', (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');
-    mongo.getConnection().collection(mongo.GALERY_COLLECTIN).insertOne({
+    mongo.getConnection().collection(mongo.GALERY_COLLECTION).insertOne({
         base64img
     }, function (err, doc) {
         if (err) {
@@ -17,7 +17,7 @@ server.app.post('/galery', (req, res) => {
 });
 
 server.app.get('/galery', (req, res) => {
-    mongo.getConnection().collection(mongo.GALERY_COLLECTIN).find({}).toArray(function (err, docs) {
+    mongo.getConnection().collection(mongo.GALERY_COLLECTION).find({}).toArray(function (err, docs) {
         if (err) {
             console.log('ERROR: ' + err);
             res.status(500).json(err);
@@ -28,7 +28,7 @@ server.app.get('/galery', (req, res) => {
 });
 
 server.app.get('/galery:id', (req, res) => {
-    mongo.getConnection().collection(mongo.GALERY_COLLECTIN).find({
+    mongo.getConnection().collection(mongo.GALERY_COLLECTION).find({
         _id: req.params.id
     }).toArray(function (err, docs) {
         if (err) {
@@ -42,7 +42,7 @@ server.app.get('/galery:id', (req, res) => {
 
 server.app.put('/galery:id', (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');
-    mongo.getConnection().collection(mongo.GALERY_COLLECTIN).updateOne({
+    mongo.getConnection().collection(mongo.GALERY_COLLECTION).updateOne({
             _id: req.params.id
         }, {
             base64img
@@ -61,7 +61,7 @@ server.app.delete('/galery:id', (req, res) => {
     let document = {
         _id: req.params.id
     };
-    mongo.getConnection().collection(mongo.GALERY_COLLECTIN).remove(document, function (err, obj) {
+    mongo.getConnection().collection(mongo.GALERY_COLLECTION).remove(document, function (err, obj) {
         if (err) {
             res.status(500).json(err);
         } else {
