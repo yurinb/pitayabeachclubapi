@@ -40,7 +40,7 @@ function connectDB(callback) {
 
 function getConnection() {
     if (connection) {
-        console.log(logs.redLog(logs.dateNow()) + logs.blueLog('get dbconnection.'));
+        console.log(logs.redLog() + logs.blueLog(), logs.dateNow(), ' get dbconnection.');
         return connection;
     } else {
         if (connecting == false) {
