@@ -1,5 +1,4 @@
 const mongodb = require("mongodb");
-const ObjectID = mongodb.ObjectID;
 const logs = require("../logs");
 
 // collections
@@ -53,11 +52,15 @@ function getConnection() {
     }
 }
 
+function getID(id) {
+    return new mongodb.ObjectID(id);
+}
+
 
 
 module.exports = {
     getConnection,
-
+    getID,
     SLIDER_COLLECTION,
     GDESCRIPTION_COLLECTION,
     SMENU_COLLECTION,

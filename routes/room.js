@@ -31,9 +31,9 @@ server.app.get('/room', (req, res) => {
     });
 });
 
-server.app.get('/room:id', (req, res) => {
+server.app.get('/room/:id', (req, res) => {
     mongo.getConnection().collection(mongo.ROOM_COLLECTION).find({
-        _id: req.params.id
+        _id: mongo.getID(req.params.id)
     }).toArray(function (err, docs) {
         if (err) {
             console.log('ERROR: ' + err);
@@ -44,9 +44,9 @@ server.app.get('/room:id', (req, res) => {
     });
 });
 
-server.app.put('/room:id', (req, res) => {
+server.app.put('/room/:id', (req, res) => {
     mongo.getConnection().collection(mongo.ROOM_COLLECTION).updateOne({
-            _id: req.params.id
+            _id: mongo.getID(req.params.id)
         }, {
             cama: req.body.cama,
             wifi: req.body.wifi,
@@ -55,7 +55,7 @@ server.app.put('/room:id', (req, res) => {
             maxOcupation: req.body.maxOcupation,
             perNight: req.body.perNight,
         },
-        function (err, res) {
+        function (err, docs) {
             if (err) {
                 res.status(500).json(err);
             } else {
@@ -65,9 +65,9 @@ server.app.put('/room:id', (req, res) => {
         });
 });
 
-server.app.delete('/room:id', (req, res) => {
+server.app.delete('/room/:id', (req, res) => {
     let document = {
-        _id: req.params.id
+        _id: mongo.getID(req.params.id)
     };
     mongo.getConnection().collection(mongo.ROOM_COLLECTION).remove(document, function (err, obj) {
         if (err) {

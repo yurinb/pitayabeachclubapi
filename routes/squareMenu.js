@@ -29,9 +29,9 @@ server.app.get('/smenu', (req, res) => {
     });
 });
 
-server.app.get('/smenu:id', (req, res) => {
+server.app.get('/smenu/:id', (req, res) => {
     mongo.getConnection().collection(mongo.SMENU_COLLECTION).find({
-        _id: req.params.id
+        _id: mongo.getID(req.params.id)
     }).toArray(function (err, docs) {
         if (err) {
             console.log('ERROR: ' + err);
@@ -42,16 +42,16 @@ server.app.get('/smenu:id', (req, res) => {
     });
 });
 
-server.app.put('/smenu:id', (req, res) => {
+server.app.put('/smenu/:id', (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');
     let title = req.body.title;
     mongo.getConnection().collection(mongo.SMENU_COLLECTION).updateOne({
-            _id: req.params.id
+            _id: mongo.getID(req.params.id)
         }, {
             title: title,
             background: base64img
         },
-        function (err, res) {
+        function (err, docs) {
             if (err) {
                 res.status(500).json(err);
             } else {
@@ -61,9 +61,9 @@ server.app.put('/smenu:id', (req, res) => {
         });
 });
 
-server.app.delete('/smenu:id', (req, res) => {
+server.app.delete('/smenu/:id', (req, res) => {
     let document = {
-        _id: req.params.id
+        _id: mongo.getID(req.params.id)
     };
     mongo.getConnection().collection(mongo.SMENU_COLLECTION).remove(document, function (err, obj) {
         if (err) {

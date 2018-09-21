@@ -27,9 +27,9 @@ server.app.get('/slider', (req, res) => {
     });
 });
 
-server.app.get('/slider:id', (req, res) => {
+server.app.get('/slider/:id', (req, res) => {
     mongo.getConnection().collection(mongo.SLIDER_COLLECTION).find({
-        _id: req.params.id
+        _id: mongo.getID(req.params.id)
     }).toArray(function (err, docs) {
         if (err) {
             console.log('ERROR: ' + err);
@@ -40,14 +40,16 @@ server.app.get('/slider:id', (req, res) => {
     });
 });
 
-server.app.put('/slider:id', (req, res) => {
+server.app.put('/slider/:id', (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');
-    mongo.getConnection().collection(mongo.GDESCRIPTION_COLLECTION).updateOne({
-            _id: req.params.id
+    mongo.getConnection().collection(mongo.SLIDER_COLLECTION).updateOne({
+            _id: mongo.getID(req.params.id)
         }, {
-            base64img
+            $set: {
+                base64img
+            }
         },
-        function (err, res) {
+        function (err, docs) {
             if (err) {
                 res.status(500).json(err);
             } else {
@@ -57,9 +59,9 @@ server.app.put('/slider:id', (req, res) => {
         });
 });
 
-server.app.delete('/slider:id', (req, res) => {
+server.app.delete('/slider/:id', (req, res) => {
     let document = {
-        _id: req.params.id
+        _id: mongo.getID(req.params.id)
     };
     mongo.getConnection().collection(mongo.SLIDER_COLLECTION).remove(document, function (err, obj) {
         if (err) {

@@ -26,9 +26,9 @@ server.app.get('/gdescription', (req, res) => {
     });
 });
 
-server.app.get('/gdescription:id', (req, res) => {
+server.app.get('/gdescription/:id', (req, res) => {
     mongo.getConnection().collection(mongo.GDESCRIPTION_COLLECTION).find({
-        _id: req.params.id
+        _id: mongo.getID(req.params.id)
     }).toArray(function (err, docs) {
         if (err) {
             console.log('ERROR: ' + err);
@@ -39,13 +39,13 @@ server.app.get('/gdescription:id', (req, res) => {
     });
 });
 
-server.app.put('/gdescription:id', (req, res) => {
+server.app.put('/gdescription/:id', (req, res) => {
     mongo.getConnection().collection(mongo.GDESCRIPTION_COLLECTION).updateOne({
-            _id: req.params.id
+            _id: mongo.getID(req.params.id)
         }, {
             text:req.body.text
         },
-        function (err, res) {
+        function (err, docs) {
             if (err) {
                 res.status(500).json(err);
             } else {
@@ -55,9 +55,9 @@ server.app.put('/gdescription:id', (req, res) => {
         });
 });
 
-server.app.delete('/gdescription:id', (req, res) => {
+server.app.delete('/gdescription/:id', (req, res) => {
     let document = {
-        _id: req.params.id
+        _id: mongo.getID(req.params.id)
     };
     mongo.getConnection().collection(mongo.GDESCRIPTION_COLLECTION).remove(document, function (err, obj) {
         if (err) {

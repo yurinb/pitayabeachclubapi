@@ -33,9 +33,9 @@ server.app.get('/levent', (req, res) => {
     });
 });
 
-server.app.get('/levent:id', (req, res) => {
+server.app.get('/levent/:id', (req, res) => {
     mongo.getConnection().collection(mongo.LEVENT_COLLECTION).find({
-        _id: req.params.id
+        _id: mongo.getID(req.params.id)
     }).toArray(function (err, docs) {
         if (err) {
             console.log('ERROR: ' + err);
@@ -46,20 +46,20 @@ server.app.get('/levent:id', (req, res) => {
     });
 });
 
-server.app.put('/levent:id', (req, res) => {
+server.app.put('/levent/:id', (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');
     let title = req.body.title;
     let date = req.body.date;
     let time = req.body.time;
     mongo.getConnection().collection(mongo.LEVENT_COLLECTION).updateOne({
-            _id: req.params.id
+            _id: mongo.getID(req.params.id)
         }, {
             title,
             img: base64img,
             date,
             time
         },
-        function (err, res) {
+        function (err, docs) {
             if (err) {
                 res.status(500).json(err);
             } else {
@@ -69,9 +69,9 @@ server.app.put('/levent:id', (req, res) => {
         });
 });
 
-server.app.delete('/levent:id', (req, res) => {
+server.app.delete('/levent/:id', (req, res) => {
     let document = {
-        _id: req.params.id
+        _id: mongo.getID(req.params.id)
     };
     mongo.getConnection().collection(mongo.LEVENT_COLLECTION).remove(document, function (err, obj) {
         if (err) {

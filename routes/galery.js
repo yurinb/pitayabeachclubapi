@@ -27,9 +27,10 @@ server.app.get('/galery', (req, res) => {
     });
 });
 
-server.app.get('/galery:id', (req, res) => {
+server.app.get('/galery/:id', (req, res) => {
     mongo.getConnection().collection(mongo.GALERY_COLLECTION).find({
-        _id: req.params.id
+        _id: mongo.getID(req.params.id)
+
     }).toArray(function (err, docs) {
         if (err) {
             console.log('ERROR: ' + err);
@@ -40,14 +41,16 @@ server.app.get('/galery:id', (req, res) => {
     });
 });
 
-server.app.put('/galery:id', (req, res) => {
+server.app.put('/galery/:id', (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');
     mongo.getConnection().collection(mongo.GALERY_COLLECTION).updateOne({
-            _id: req.params.id
+            _id: mongo.getID(req.params.id)
         }, {
-            base64img
+            $set: {
+                base64img: base64img
+            }
         },
-        function (err, res) {
+        function (err, docs) {
             if (err) {
                 res.status(500).json(err);
             } else {
@@ -57,9 +60,9 @@ server.app.put('/galery:id', (req, res) => {
         });
 });
 
-server.app.delete('/galery:id', (req, res) => {
+server.app.delete('/galery/:id', (req, res) => {
     let document = {
-        _id: req.params.id
+        _id: mongo.getID(req.params.id)
     };
     mongo.getConnection().collection(mongo.GALERY_COLLECTION).remove(document, function (err, obj) {
         if (err) {
