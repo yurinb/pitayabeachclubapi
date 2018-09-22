@@ -8,7 +8,7 @@ require('../routes/home/desc');
 
 require('../routes/apart/banner');
 require('../routes/apart/room');
-require('../routes/apart/galery');
+require('../routes/apart/gallery');
 require('../routes/apart/desc');
 
 require('../routes/garopaba/desc');
