@@ -15,9 +15,6 @@ app.use(function (req, res, next) {
 // database
 require('../config/db');
 
-// routes
-require('./routes');
-
 // no sleep
 const http = require("http");
 setInterval(function () {
@@ -29,3 +26,6 @@ setInterval(function () {
 module.exports = {
     app: app,
 };
+
+// routes
+require('./routes');

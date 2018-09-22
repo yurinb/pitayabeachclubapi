@@ -1,22 +1,22 @@
 const mongodb = require("mongodb");
-const logs = require("../logs");
+const logs    = require("../logs");
 
 // collections
 const HOME_SLIDER_COLLECTION = "home_slider";
-const HOME_DESC_COLLECTION = "home_desc";
-const HOME_MENU_COLLECTION = "home_menu";
-const HOME_EVENT_COLLECTION = "home_event";
+const HOME_DESC_COLLECTION   = "home_desc";
+const HOME_MENU_COLLECTION   = "home_menu";
+const HOME_EVENT_COLLECTION  = "home_event";
 
-const APART_BANNER_COLLECTION = "apart_banner";
-const APART_ROOM_COLLECTION = "apart_room";
+const APART_BANNER_COLLECTION  = "apart_banner";
+const APART_ROOM_COLLECTION    = "apart_room";
 const APART_GALLERY_COLLECTION = "apart_gallery";
-const APART_DESC_COLLECTION = "apart_desc";
+const APART_DESC_COLLECTION    = "apart_desc";
 
 const GASTRO_BANNER_COLLECTION = "gastro_banner";
-const GASTRO_DESC_COLLECTION = "gastro_desc";
+const GASTRO_DESC_COLLECTION   = "gastro_desc";
 const GASTRO_SLIDER_COLLECTION = "gastro_slider";
 
-const GAROPABA_DESC_COLLECTION = "garopaba_desc";
+const GAROPABA_DESC_COLLECTION   = "garopaba_desc";
 const GAROPABA_SLIDER_COLLECTION = "garopaba_slider";
 
 let connection = null;
@@ -63,8 +63,6 @@ function getConnection() {
 function getID(id) {
     return new mongodb.ObjectID(id);
 }
-
-
 
 module.exports = {
     getConnection,
