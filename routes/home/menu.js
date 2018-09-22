@@ -2,7 +2,7 @@ const SERVER = require('../../config/server');
 const MONGO = require('../../config/db');
 
 const ENDPOINT = '/home/menu';
-const COLLECTION_NAME = MONGO.SMENU_COLLECTION;
+const COLLECTION_NAME = MONGO.HOME_MENU_COLLECTION;
 
 
 SERVER.app.post(ENDPOINT, (req, res) => {

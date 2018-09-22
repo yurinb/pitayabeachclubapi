@@ -2,7 +2,7 @@ const SERVER = require('../../config/server');
 const MONGO = require('../../config/db');
 
 const ENDPOINT = '/apart/banner';
-const COLLECTION_NAME = MONGO.MBACKGROUND_COLLECTION;
+const COLLECTION_NAME = MONGO.APART_BANNER_COLLECTION;
 
 
 SERVER.app.post(ENDPOINT, (req, res) => {

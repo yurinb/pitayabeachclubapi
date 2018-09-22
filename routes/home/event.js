@@ -2,7 +2,7 @@ const SERVER = require('../config/server');
 const MONGO = require('../config/db');
 
 const ENDPOINT = '/home/event';
-const COLLECTION_NAME = MONGO.LEVENT_COLLECTION;
+const COLLECTION_NAME = MONGO.HOME_EVENT_COLLECTION;
 
 
 SERVER.app.post(ENDPOINT, (req, res) => {

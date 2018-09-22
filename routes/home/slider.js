@@ -2,7 +2,7 @@ const SERVER = require('../../config/server');
 const MONGO = require('../../config/db');
 
 const ENDPOINT = '/home/slider';
-const COLLECTION_NAME = MONGO.SLIDER_COLLECTION;
+const COLLECTION_NAME = MONGO.HOME_SLIDER_COLLECTION;
 
 
 SERVER.app.post(ENDPOINT, (req, res) => {

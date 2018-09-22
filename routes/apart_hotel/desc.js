@@ -2,7 +2,7 @@ const SERVER = require('../../config/server');
 const MONGO = require('../../config/db');
 
 const ENDPOINT = '/apart/desc';
-const COLLECTION_NAME = MONGO.DESCRIPTION_COLLECTION;
+const COLLECTION_NAME = MONGO.APART_DESC_COLLECTION;
 
 
 SERVER.app.post(ENDPOINT, (req, res) => {
