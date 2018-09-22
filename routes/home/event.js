@@ -1,5 +1,5 @@
-const SERVER = require('../config/server');
-const MONGO = require('../config/db');
+const SERVER = require('../../config/server');
+const MONGO = require('../../config/db');
 
 const ENDPOINT = '/home/event';
 const COLLECTION_NAME = MONGO.HOME_EVENT_COLLECTION;

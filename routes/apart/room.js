@@ -1,5 +1,5 @@
-const SERVER = require('../config/server');
-const MONGO = require('../config/db');
+const SERVER = require('../../config/server');
+const MONGO = require('../../config/db');
 
 const ENDPOINT = '/apart/room';
 const COLLECTION_NAME = MONGO.APART_ROOM_COLLECTION;
