@@ -1,8 +1,12 @@
-const server = require('../config/server');
-const mongo = require('../config/db');
+const SERVER = require('../config/server');
+const MONGO = require('../config/db');
 
-server.app.post('/room', (req, res) => {
-    mongo.getConnection().collection(mongo.ROOM_COLLECTION).insertOne({
+const ENDPOINT = '/apart/room';
+const COLLECTION_NAME = MONGO.ROOM_COLLECTION;
+
+
+SERVER.app.post(ENDPOINT, (req, res) => {
+    MONGO.getConnection().collection(COLLECTION_NAME).insertOne({
         cama: req.body.cama,
         wifi: req.body.wifi,
         air: req.body.air,
@@ -20,8 +24,8 @@ server.app.post('/room', (req, res) => {
     });
 });
 
-server.app.get('/room', (req, res) => {
-    mongo.getConnection().collection(mongo.ROOM_COLLECTION).find({}).toArray(function (err, docs) {
+SERVER.app.get(ENDPOINT, (req, res) => {
+    MONGO.getConnection().collection(COLLECTION_NAME).find({}).toArray(function (err, docs) {
         if (err) {
             console.log('ERROR: ' + err);
             res.status(500).json(err);
@@ -31,9 +35,9 @@ server.app.get('/room', (req, res) => {
     });
 });
 
-server.app.get('/room/:id', (req, res) => {
-    mongo.getConnection().collection(mongo.ROOM_COLLECTION).find({
-        _id: mongo.getID(req.params.id)
+SERVER.app.get(ENDPOINT + '/:id', (req, res) => {
+    MONGO.getConnection().collection(COLLECTION_NAME).find({
+        _id: MONGO.getID(req.params.id)
     }).toArray(function (err, docs) {
         if (err) {
             console.log('ERROR: ' + err);
@@ -44,9 +48,9 @@ server.app.get('/room/:id', (req, res) => {
     });
 });
 
-server.app.put('/room/:id', (req, res) => {
-    mongo.getConnection().collection(mongo.ROOM_COLLECTION).updateOne({
-            _id: mongo.getID(req.params.id)
+SERVER.app.put(ENDPOINT + '/:id', (req, res) => {
+    MONGO.getConnection().collection(COLLECTION_NAME).updateOne({
+            _id: MONGO.getID(req.params.id)
         }, {
             cama: req.body.cama,
             wifi: req.body.wifi,
@@ -65,11 +69,11 @@ server.app.put('/room/:id', (req, res) => {
         });
 });
 
-server.app.delete('/room/:id', (req, res) => {
+SERVER.app.delete(ENDPOINT + '/:id', (req, res) => {
     let document = {
-        _id: mongo.getID(req.params.id)
+        _id: MONGO.getID(req.params.id)
     };
-    mongo.getConnection().collection(mongo.ROOM_COLLECTION).remove(document, function (err, obj) {
+    MONGO.getConnection().collection(COLLECTION_NAME).remove(document, function (err, obj) {
         if (err) {
             res.status(500).json(err);
         } else {

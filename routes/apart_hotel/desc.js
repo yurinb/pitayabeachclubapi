@@ -1,10 +1,13 @@
-const server = require('../config/server');
-const mongo  = require('../config/db');
+const SERVER = require('../../config/server');
+const MONGO = require('../../config/db');
 
-server.app.post('/mbackground', (req, res) => {
-    let base64img = Buffer.from(req.files.img.data).toString('base64');
-    mongo.getConnection().collection(mongo.MBACKGROUND_COLLECTION).insertOne({
-        img : base64img,
+const ENDPOINT = '/apart/desc';
+const COLLECTION_NAME = MONGO.DESCRIPTION_COLLECTION;
+
+
+SERVER.app.post(ENDPOINT, (req, res) => {
+    MONGO.getConnection().collection(COLLECTION_NAME).insertOne({
+        text: req.body.text
     }, function (err, doc) {
         if (err) {
             console.log('ERROR: ' + err);
@@ -16,8 +19,8 @@ server.app.post('/mbackground', (req, res) => {
     });
 });
 
-server.app.get('/mbackground', (req, res) => {
-    mongo.getConnection().collection(mongo.MBACKGROUND_COLLECTION).find({}).toArray(function (err, docs) {
+SERVER.app.get(ENDPOINT, (req, res) => {
+    MONGO.getConnection().collection(COLLECTION_NAME).find({}).toArray(function (err, docs) {
         if (err) {
             console.log('ERROR: ' + err);
             res.status(500).json(err);
@@ -27,9 +30,9 @@ server.app.get('/mbackground', (req, res) => {
     });
 });
 
-server.app.get('/mbackground/:id', (req, res) => {
-    mongo.getConnection().collection(mongo.SLIDER_COLLECTION).find({
-        _id: mongo.getID(req.params.id)
+SERVER.app.get(ENDPOINT + '/:id', (req, res) => {
+    MONGO.getConnection().collection(COLLECTION_NAME).find({
+        _id: MONGO.getID(req.params.id)
     }).toArray(function (err, docs) {
         if (err) {
             console.log('ERROR: ' + err);
@@ -40,12 +43,11 @@ server.app.get('/mbackground/:id', (req, res) => {
     });
 });
 
-server.app.put('/mbackground/:id', (req, res) => {
-    let base64img = Buffer.from(req.files.img.data).toString('base64');
-    mongo.getConnection().collection(mongo.MBACKGROUND_COLLECTION).updateOne({
-            _id: mongo.getID(req.params.id)
+SERVER.app.put(ENDPOINT + '/:id', (req, res) => {
+    MONGO.getConnection().collection(COLLECTION_NAME).updateOne({
+            _id: MONGO.getID(req.params.id)
         }, {
-            img : base64img,
+            text: req.body.text
         },
         function (err, docs) {
             if (err) {
@@ -57,11 +59,11 @@ server.app.put('/mbackground/:id', (req, res) => {
         });
 });
 
-server.app.delete('/mbackground/:id', (req, res) => {
+SERVER.app.delete(ENDPOINT + '/:id', (req, res) => {
     let document = {
-        _id: mongo.getID(req.params.id)
+        _id: MONGO.getID(req.params.id)
     };
-    mongo.getConnection().collection(mongo.MBACKGROUND_COLLECTION).remove(document, function (err, obj) {
+    MONGO.getConnection().collection(COLLECTION_NAME).remove(document, function (err, obj) {
         if (err) {
             res.status(500).json(err);
         } else {

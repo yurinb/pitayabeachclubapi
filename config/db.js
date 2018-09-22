@@ -1,15 +1,23 @@
 const mongodb = require("mongodb");
-const logs = require("../logs");
+const logs    = require("../logs");
 
 // collections
-const SLIDER_COLLECTION = "slider";
-const GDESCRIPTION_COLLECTION = "gdescription";
-const SMENU_COLLECTION = "smenu";
-const LEVENT_COLLECTION = "levent";
-const MBACKGROUND_COLLECTION = "mbackground";
-const ROOM_COLLECTION = "room";
-const GALERY_COLLECTION = "galery";
-const DESCRIPTION_COLLECTION = "description";
+const HOME_SLIDER_COLLECTION     = "home_slider";
+const HOME_DESC_COLLECTION       = "home_desc";
+const HOME_MENU_COLLECTION       = "home_menu";
+const HOME_EVENT_COLLECTION      = "home_event";
+
+const APART_BANNER_COLLECTION    = "apart_banner";
+const APART_ROOM_COLLECTION      = "apart_room";
+const APART_GALLERY_COLLECTION   = "apart_gallery";
+const APART_DESC_COLLECTION      = "apart_desc";
+
+const GASTRO_BANNER_COLLECTION   = "gastro_banner";
+const GASTRO_DESC_COLLECTION     = "gastro_desc";
+const GASTRO_SLIDER_COLLECTION   = "gastro_slider";
+
+const GAROPABA_DESC_COLLECTION   = "garopaba_desc";
+const GAROPABA_SLIDER_COLLECTION = "garopaba_slider";
 
 let connection = null;
 let connecting = false;
@@ -61,6 +69,7 @@ function getID(id) {
 module.exports = {
     getConnection,
     getID,
+
     SLIDER_COLLECTION,
     GDESCRIPTION_COLLECTION,
     SMENU_COLLECTION,
@@ -68,5 +77,11 @@ module.exports = {
     MBACKGROUND_COLLECTION,
     ROOM_COLLECTION,
     GALERY_COLLECTION,
-    DESCRIPTION_COLLECTION
+    DESCRIPTION_COLLECTION,
+    GASTRO_BANNER_COLLECTION,
+    GASTRO_DESC_COLLECTION,
+    GASTRO_SLIDER_COLLECTION,
+    GAROPABA_SLIDER_COLLECTION,
+    GAROPABA_DESC_COLLECTION,
+
 };

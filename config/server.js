@@ -21,14 +21,14 @@ module.exports = {
 };
 
 // routes
-require('../routes/uploadImg');
-require('../routes/lastEvent');
-require('../routes/squareMenu');
-require('../routes/generalDescription');
-require('../routes/mainBackgroundImg');
-require('../routes/room');
-require('../routes/galery');
-require('../routes/desc');
+require('../routes/home/slider');
+require('../routes/home/event');
+require('../routes/home/menu');
+require('../routes/home/desc');
+require('../routes/apart_hotel/banner');
+require('../routes/apart_hotel/room');
+require('../routes/apart_hotel/galery');
+require('../routes/apart_hotel/desc');
 require('../routes/converter');
 
 // no sleep
