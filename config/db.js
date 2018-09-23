@@ -1,22 +1,24 @@
 const mongodb = require("mongodb");
-const logs    = require("../logs");
+const logs = require("../logs");
 
 // collections
-const HOME_SLIDER_COLLECTION = "home_slider";
-const HOME_DESC_COLLECTION   = "home_desc";
-const HOME_MENU_COLLECTION   = "home_menu";
-const HOME_EVENT_COLLECTION  = "home_event";
+const USER_COLLECTION = "user";
 
-const APART_BANNER_COLLECTION  = "apart_banner";
-const APART_ROOM_COLLECTION    = "apart_room";
+const HOME_SLIDER_COLLECTION = "home_slider";
+const HOME_DESC_COLLECTION = "home_desc";
+const HOME_MENU_COLLECTION = "home_menu";
+const HOME_EVENT_COLLECTION = "home_event";
+
+const APART_BANNER_COLLECTION = "apart_banner";
+const APART_ROOM_COLLECTION = "apart_room";
 const APART_GALLERY_COLLECTION = "apart_gallery";
-const APART_DESC_COLLECTION    = "apart_desc";
+const APART_DESC_COLLECTION = "apart_desc";
 
 const GASTRO_BANNER_COLLECTION = "gastro_banner";
-const GASTRO_DESC_COLLECTION   = "gastro_desc";
+const GASTRO_DESC_COLLECTION = "gastro_desc";
 const GASTRO_SLIDER_COLLECTION = "gastro_slider";
 
-const GAROPABA_DESC_COLLECTION   = "garopaba_desc";
+const GAROPABA_DESC_COLLECTION = "garopaba_desc";
 const GAROPABA_SLIDER_COLLECTION = "garopaba_slider";
 
 let connection = null;
@@ -38,7 +40,7 @@ function connectDB(callback) {
             }
             // Save database object from the callback for reuse.
             connection = client.db();
-            console.log("database connected.");
+            console.log(logs.yellowLog("database connected."));
             callback(connection);
         });
 }
@@ -47,7 +49,7 @@ function connectDB(callback) {
 
 function getConnection() {
     if (connection) {
-        console.log(logs.redLog() + logs.blueLog(), logs.dateNow(), ' get dbconnection.');
+        console.log(logs.redLog(logs.dateNow()) + logs.blueLog(' get dbconnection.'));
         return connection;
     } else {
         if (connecting == false) {
@@ -67,6 +69,8 @@ function getID(id) {
 module.exports = {
     getConnection,
     getID,
+
+    USER_COLLECTION,
 
     HOME_SLIDER_COLLECTION,
     HOME_DESC_COLLECTION,
