@@ -19,7 +19,7 @@ function verifyToken(token) {
             console.log(LOGS.blueLog(err));
             return;
         }
-        console.log(LOGS.greenLog('User Logged in.'));
+        console.log(LOGS.greenLog('[user logged in]'));
         data = decoded;
         return data;
     });

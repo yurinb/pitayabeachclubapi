@@ -24,7 +24,7 @@ SERVER.app.post(ENDPOINT, (req, res) => {
                 }
                 res.status(200).json(response);
             } else{
-                res.status(401).json('Unauthorized');
+                res.status(404).json('User not found');
             }
         }
     });
