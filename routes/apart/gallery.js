@@ -1,7 +1,7 @@
 const SERVER = require('../../config/server');
 const MONGO = require('../../config/db');
 
-const ENDPOINT = '/apart/galery';
+const ENDPOINT = '/apart/gallery';
 const COLLECTION_NAME = MONGO.APART_GALLERY_COLLECTION;
 
 
