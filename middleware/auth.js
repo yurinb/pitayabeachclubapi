@@ -7,7 +7,7 @@ const NOT_GET = ['/user'];
 
 SERVER.app.use(function (req, res, next) {
     // if request url is free of authentication:
-    if (FREE_ROUTES.includes(req.url) || req.method == 'GET') {
+    if (FREE_ROUTES.includes(req.url) || req.method == 'GET' || req.method == 'OPTIONS') {
         next();
     } else {
         console.log('verificando acesso...');
