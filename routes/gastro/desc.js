@@ -69,7 +69,7 @@ SERVER.app.delete(ENDPOINT + '/:id', (req, res) => {
             res.status(500).json(err);
         } else {
             console.log(obj.result.n + " document(s) deleted");
-            res.status(200).json(docs);
+            res.status(200).json(obj);
         }
     });
 });
