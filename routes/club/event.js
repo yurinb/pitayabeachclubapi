@@ -8,12 +8,12 @@ const COLLECTION_NAME = MONGO.CLUB_EVENT_COLLECTION;
 SERVER.app.post(ENDPOINT, (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');
     let title = req.body.title;
-    let desc = req.body.desc;
+    let data = req.body.data;
     let link = req.body.link;
     MONGO.getConnection().collection(COLLECTION_NAME).insertOne({
         title,
         img: base64img,
-        desc,
+        data,
         link
     }, function (err, doc) {
         if (err) {
@@ -53,7 +53,7 @@ SERVER.app.get(ENDPOINT + '/:id', (req, res) => {
 SERVER.app.put(ENDPOINT + '/:id', (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');
     let title = req.body.title;
-    let desc = req.body.desc;
+    let data = req.body.data;
     let link = req.body.link;
     MONGO.getConnection().collection(COLLECTION_NAME).updateOne({
             _id: MONGO.getID(req.params.id)
@@ -61,7 +61,7 @@ SERVER.app.put(ENDPOINT + '/:id', (req, res) => {
             $set: {
                 title,
                 img: base64img,
-                desc,
+                data,
                 link
             }
         },

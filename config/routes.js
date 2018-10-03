@@ -19,3 +19,5 @@ require('../routes/garopaba/slider');
 require('../routes/gastro/banner');
 require('../routes/gastro/desc');
 require('../routes/gastro/slider');
+
+require('../routes/club/event');
