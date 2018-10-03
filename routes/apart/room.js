@@ -75,7 +75,7 @@ SERVER.app.delete(ENDPOINT + '/:id', (req, res) => {
     let document = {
         _id: MONGO.getID(req.params.id)
     };
-    MONGO.getConnection().collection(COLLECTION_NAME).remove(document, function (err, obj) {
+    MONGO.getConnection().collection(COLLECTION_NAME).deleteOne(document, function (err, obj) {
         if (err) {
             res.status(500).json(err);
         } else {
