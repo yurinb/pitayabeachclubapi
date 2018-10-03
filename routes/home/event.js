@@ -58,10 +58,12 @@ SERVER.app.put(ENDPOINT + '/:id', (req, res) => {
     MONGO.getConnection().collection(COLLECTION_NAME).updateOne({
             _id: MONGO.getID(req.params.id)
         }, {
-            title,
-            img: base64img,
-            date,
-            time
+            $set: {
+                title,
+                img: base64img,
+                date,
+                time
+            }
         },
         function (err, docs) {
             if (err) {

@@ -12,7 +12,11 @@ function generateToken(data) {
 }
 
 function verifyToken(token) {
-    let data = {};
+    let data = {}
+    try {
+        token = token.split(' ')[1];
+    } catch (error) {}
+
     JWT.verify(token, secretKey, function (err, decoded) {
         if (err) {
             console.log(LOGS.redLog('LOGIN FAILURE: '));
@@ -21,9 +25,9 @@ function verifyToken(token) {
         }
         console.log(LOGS.greenLog('[user logged in]'));
         data = decoded;
-        return data;
     });
-    return false;
+
+    return data;
 }
 
 

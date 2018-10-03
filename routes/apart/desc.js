@@ -47,7 +47,9 @@ SERVER.app.put(ENDPOINT + '/:id', (req, res) => {
     MONGO.getConnection().collection(COLLECTION_NAME).updateOne({
             _id: MONGO.getID(req.params.id)
         }, {
-            text: req.body.text
+            $set: {
+                text: req.body.text
+            }
         },
         function (err, docs) {
             if (err) {

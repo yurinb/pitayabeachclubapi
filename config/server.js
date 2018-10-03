@@ -28,4 +28,4 @@ const http = require("http");
 setInterval(function () {
     console.log('[auto-ping]');
     http.get("http://pitayabeachapi.herokuapp.com");
-}, 50000);
+}, 300000);

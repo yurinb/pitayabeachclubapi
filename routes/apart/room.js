@@ -52,12 +52,14 @@ SERVER.app.put(ENDPOINT + '/:id', (req, res) => {
     MONGO.getConnection().collection(COLLECTION_NAME).updateOne({
             _id: MONGO.getID(req.params.id)
         }, {
-            cama: req.body.cama,
-            wifi: req.body.wifi,
-            air: req.body.air,
-            coffee: req.body.coffee,
-            maxOcupation: req.body.maxOcupation,
-            perNight: req.body.perNight,
+            $set: {
+                cama: req.body.cama,
+                wifi: req.body.wifi,
+                air: req.body.air,
+                coffee: req.body.coffee,
+                maxOcupation: req.body.maxOcupation,
+                perNight: req.body.perNight,
+            }
         },
         function (err, docs) {
             if (err) {
