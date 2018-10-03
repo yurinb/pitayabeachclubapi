@@ -21,6 +21,8 @@ const GASTRO_SLIDER_COLLECTION = "gastro_slider";
 const GAROPABA_DESC_COLLECTION = "garopaba_desc";
 const GAROPABA_SLIDER_COLLECTION = "garopaba_slider";
 
+const CLUB_EVENT_COLLECTION = "club_event";
+
 let connection = null;
 let connecting = false;
 
@@ -88,5 +90,7 @@ module.exports = {
 
     GAROPABA_DESC_COLLECTION,
     GAROPABA_SLIDER_COLLECTION,
+
+    CLUB_EVENT_COLLECTION,
 
 };
