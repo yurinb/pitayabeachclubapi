@@ -21,3 +21,6 @@ require('../routes/gastro/desc');
 require('../routes/gastro/slider');
 
 require('../routes/club/event');
+require('../routes/club/desc');
+require('../routes/club/banner');
+require('../routes/club/gallery');

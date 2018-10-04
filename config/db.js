@@ -22,6 +22,9 @@ const GAROPABA_DESC_COLLECTION = "garopaba_desc";
 const GAROPABA_SLIDER_COLLECTION = "garopaba_slider";
 
 const CLUB_EVENT_COLLECTION = "club_event";
+const CLUB_DESC_COLLECTION = "club_desc";
+const CLUB_BANNER_COLLECTION = "club_banner";
+const CLUB_GALLERY_COLLECTION = "club_gallery";
 
 let connection = null;
 let connecting = false;
@@ -92,5 +95,8 @@ module.exports = {
     GAROPABA_SLIDER_COLLECTION,
 
     CLUB_EVENT_COLLECTION,
+    CLUB_DESC_COLLECTION,
+    CLUB_BANNER_COLLECTION,
+    CLUB_GALLERY_COLLECTION,
 
 };
