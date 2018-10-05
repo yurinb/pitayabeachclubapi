@@ -1,5 +1,6 @@
 // routes
 require('../routes/login');
+require('../routes/isUserLogged');
 
 require('../routes/converter');
 
