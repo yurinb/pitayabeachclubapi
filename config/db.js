@@ -20,6 +20,7 @@ const GASTRO_SLIDER_COLLECTION = "gastro_slider";
 
 const GAROPABA_DESC_COLLECTION = "garopaba_desc";
 const GAROPABA_SLIDER_COLLECTION = "garopaba_slider";
+const GAROPABA_BANNER_COLLECTION = "garopaba_banner";
 
 const CLUB_EVENT_COLLECTION = "club_event";
 const CLUB_DESC_COLLECTION = "club_desc";
@@ -91,6 +92,7 @@ module.exports = {
     GASTRO_DESC_COLLECTION,
     GASTRO_SLIDER_COLLECTION,
 
+    GAROPABA_BANNER_COLLECTION,
     GAROPABA_DESC_COLLECTION,
     GAROPABA_SLIDER_COLLECTION,
 

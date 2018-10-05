@@ -14,6 +14,7 @@ require('../routes/apart/room');
 require('../routes/apart/gallery');
 require('../routes/apart/desc');
 
+require('../routes/garopaba/banner');
 require('../routes/garopaba/desc');
 require('../routes/garopaba/slider');
 
