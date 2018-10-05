@@ -1,18 +1,20 @@
 const SERVER = require('../../config/server');
-const MONGO = require('../../config/db');
+const MONGO  = require('../../config/db');
 
-const ENDPOINT = '/apart/room';
+const ENDPOINT        = '/apart/room';
 const COLLECTION_NAME = MONGO.APART_ROOM_COLLECTION;
 
 
 SERVER.app.post(ENDPOINT, (req, res) => {
+    let base64img = Buffer.from(req.files.img.data).toString('base64');
     MONGO.getConnection().collection(COLLECTION_NAME).insertOne({
-        cama: req.body.cama,
-        wifi: req.body.wifi,
-        air: req.body.air,
-        coffee: req.body.coffee,
+        img         : base64img,
+        cama        : req.body.cama,
+        wifi        : req.body.wifi,
+        air         : req.body.air,
+        coffee      : req.body.coffee,
         maxOcupation: req.body.maxOcupation,
-        perNight: req.body.perNight,
+        perNight    : req.body.perNight,
     }, function (err, doc) {
         if (err) {
             console.log('ERROR: ' + err);
@@ -49,16 +51,18 @@ SERVER.app.get(ENDPOINT + '/:id', (req, res) => {
 });
 
 SERVER.app.put(ENDPOINT + '/:id', (req, res) => {
+    let base64img = Buffer.from(req.files.img.data).toString('base64');
     MONGO.getConnection().collection(COLLECTION_NAME).updateOne({
             _id: MONGO.getID(req.params.id)
         }, {
             $set: {
-                cama: req.body.cama,
-                wifi: req.body.wifi,
-                air: req.body.air,
-                coffee: req.body.coffee,
+                img         : base64img,
+                cama        : req.body.cama,
+                wifi        : req.body.wifi,
+                air         : req.body.air,
+                coffee      : req.body.coffee,
                 maxOcupation: req.body.maxOcupation,
-                perNight: req.body.perNight,
+                perNight    : req.body.perNight,
             }
         },
         function (err, docs) {
