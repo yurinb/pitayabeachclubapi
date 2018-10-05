@@ -17,6 +17,9 @@ function verifyToken(token, success, err) {
         try {
             token = token.split(' ')[1];
         } catch (error) {}
+        
+        console.log(token);
+        
         // verify if token is valid (is user logged?)
         JWT.verify(token, secretKey, function (failure, decoded) {
             if (failure) {
