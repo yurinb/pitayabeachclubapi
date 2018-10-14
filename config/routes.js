@@ -2,12 +2,14 @@
 require('../routes/login');
 require('../routes/isUserLogged');
 
-require('../routes/converter');
+require('../routes/auto-ping');
+//require('../routes/converter');
 
 require('../routes/home/slider');
 require('../routes/home/event');
 require('../routes/home/menu');
 require('../routes/home/desc');
+require('../routes/home/evdesc');
 
 require('../routes/apart/banner');
 require('../routes/apart/room');

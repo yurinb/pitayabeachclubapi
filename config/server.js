@@ -22,10 +22,3 @@ require('../middleware/auth');
 
 // routes
 require('./routes');
-
-// no sleep
-const http = require("http");
-setInterval(function () {
-    console.log('[auto-ping]');
-    http.get("http://pitayabeachapi.herokuapp.com");
-}, 300000);
