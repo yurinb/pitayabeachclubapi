@@ -25,6 +25,10 @@ module.exports = {
     GAROPABA_DESC_COLLECTION: "garopaba_desc",
     GAROPABA_SLIDER_COLLECTION: "garopaba_slider",
     GAROPABA_BANNER_COLLECTION: "garopaba_banner"
+    ,
+    SHOPPING_BANNER_COLLECTION: "shopping_banner",
+    SHOPPING_DESC_COLLECTION: "shopping_desc",
+    SHOPPING_SLIDER_COLLECTION: "shopping_gallery"
         ,
     CLUB_EVENT_COLLECTION: "club_event",
     CLUB_DESC_COLLECTION: "club_desc",

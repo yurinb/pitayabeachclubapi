@@ -1,9 +1,10 @@
 const SERVER = require('../../config/server');
 const MONGO = require('../../config/db');
 
-const ENDPOINT = '/apart/gallery';
-const COLLECTION_NAME = MONGO.APART_GALLERY_COLLECTION;
+const ENDPOINT = '/shopping/slider';
+const COLLECTION_NAME = MONGO.SHOPPING_SLIDER_COLLECTION
 
+console.log('routes.add['+ENDPOINT);
 
 SERVER.app.post(ENDPOINT, (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');

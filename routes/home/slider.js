@@ -4,6 +4,7 @@ const MONGO = require('../../config/db');
 const ENDPOINT = '/home/slider';
 const COLLECTION_NAME = MONGO.HOME_SLIDER_COLLECTION;
 
+console.log('routes.add['+ENDPOINT);
 
 SERVER.app.post(ENDPOINT, (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');

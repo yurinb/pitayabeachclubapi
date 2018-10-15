@@ -24,6 +24,10 @@ require('../routes/gastro/banner');
 require('../routes/gastro/desc');
 require('../routes/gastro/slider');
 
+require('../routes/shopping/banner');
+require('../routes/shopping/desc');
+require('../routes/shopping/gallery');
+
 require('../routes/club/event');
 require('../routes/club/desc');
 require('../routes/club/banner');

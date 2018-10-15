@@ -4,6 +4,8 @@ const MONGO = require('../../config/db');
 const ENDPOINT = '/gastro/banner';
 const COLLECTION_NAME = MONGO.GASTRO_BANNER_COLLECTION;
 
+console.log('routes.add['+ENDPOINT);
+
 SERVER.app.post(ENDPOINT, (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');
     MONGO.getConnection().collection(COLLECTION_NAME).insertOne({

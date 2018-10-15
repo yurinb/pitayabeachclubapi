@@ -4,6 +4,7 @@ const MONGO = require('../../config/db');
 const ENDPOINT = '/apart/desc';
 const COLLECTION_NAME = MONGO.APART_DESC_COLLECTION;
 
+console.log('routes.add['+ENDPOINT);
 
 SERVER.app.post(ENDPOINT, (req, res) => {
     MONGO.getConnection().collection(COLLECTION_NAME).insertOne({

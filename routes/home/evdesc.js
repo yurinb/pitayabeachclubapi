@@ -4,6 +4,7 @@ const MONGO = require('../../config/db');
 const ENDPOINT = '/home/evdesc';
 const COLLECTION_NAME = MONGO.HOME_EVDESC_COLLECTION;
 
+console.log('routes.add['+ENDPOINT);
 
 SERVER.app.post(ENDPOINT, (req, res) => {
     MONGO.getConnection().collection(COLLECTION_NAME).insertOne({

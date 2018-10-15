@@ -4,11 +4,13 @@ const MONGO  = require('../../config/db');
 const ENDPOINT        = '/apart/room';
 const COLLECTION_NAME = MONGO.APART_ROOM_COLLECTION;
 
+console.log('routes.add['+ENDPOINT);
 
 SERVER.app.post(ENDPOINT, (req, res) => {
     let base64img = Buffer.from(req.files.img.data).toString('base64');
     MONGO.getConnection().collection(COLLECTION_NAME).insertOne({
         img         : base64img,
+        name        : req.body.name,
         cama        : req.body.cama,
         wifi        : req.body.wifi,
         air         : req.body.air,
@@ -57,6 +59,7 @@ SERVER.app.put(ENDPOINT + '/:id', (req, res) => {
         }, {
             $set: {
                 img         : base64img,
+                name        : req.body.name,
                 cama        : req.body.cama,
                 wifi        : req.body.wifi,
                 air         : req.body.air,

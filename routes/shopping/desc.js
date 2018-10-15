@@ -1,9 +1,10 @@
 const SERVER = require('../../config/server');
 const MONGO = require('../../config/db');
 
-const ENDPOINT = '/apart/desc';
-const COLLECTION_NAME = MONGO.APART_DESC_COLLECTION;
+const ENDPOINT = '/shopping/desc';
+const COLLECTION_NAME = MONGO.SHOPPING_DESC_COLLECTION
 
+console.log('routes.add['+ENDPOINT);
 
 SERVER.app.post(ENDPOINT, (req, res) => {
     MONGO.getConnection().collection(COLLECTION_NAME).insertOne({
